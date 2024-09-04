@@ -91,3 +91,8 @@ endmap
 map snowglobe
 	votable
 endmap
+
+map cygnus
+	votable
+endmap
+
