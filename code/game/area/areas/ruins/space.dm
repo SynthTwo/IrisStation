@@ -588,7 +588,7 @@
 //Ruin of Spinward Smoothies
 
 /area/ruin/space/has_grav/spinwardsmoothies
-	name = "Spinward Smoothies"
+	name = "Cabriole Smoothies"
 
 // The planet of the clowns
 /area/ruin/space/has_grav/powered/clownplanet

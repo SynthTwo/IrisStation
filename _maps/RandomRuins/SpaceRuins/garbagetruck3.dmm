@@ -720,7 +720,7 @@
 /area/template_noop)
 "Ko" = (
 /obj/machinery/computer/terminal{
-	content = list("Property of Spinward-Upsilon Sanitation Department. Authorised employees only.");
+	content = list("Property of Cabriole Sanitation Department. Authorised employees only.");
 	desc = "A garbage truck's dusty old control console.";
 	name = "dashboard";
 	upperinfo = "Controls locked."

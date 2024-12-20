@@ -349,8 +349,8 @@
 /datum/map_template/ruin/space/spinwardsmoothies
 	id = "spinwardsmoothies"
 	suffix = "spinwardsmoothies.dmm"
-	name = "Space-Ruin Spinward Smoothies"
-	description = "A branch of the beloved Spinward Smoothies chain of smoothie bars."
+	name = "Space-Ruin Cabriole Smoothies"
+	description = "A branch of the beloved Cabriole Smoothies chain of smoothie bars."
 
 /datum/map_template/ruin/space/cyborg_mothership
 	id = "cyborg_mothership"
@@ -439,14 +439,14 @@
 /datum/map_template/ruin/space/interdyne
 	id = "interdyne"
 	suffix = "interdyne.dmm"
-	name = "Space-Ruin Interdyne Spinward Research Base"
+	name = "Space-Ruin Interdyne Cabriole Research Base"
 	description = "An Interdyne facility abandoned due to the accidental discovery of Romerol"
 
 /datum/map_template/ruin/space/waystation
 	id = "waystation"
 	suffix = "waystation.dmm"
 	name = "Space-Ruin Waystation"
-	description = "A waytation for a backwater subsector of Spinward gets attacked by the syndicate due to bad luck."
+	description = "A waytation for a backwater subsector of Cabriole gets attacked by the syndicate due to bad luck."
 
 /datum/map_template/ruin/space/allamericandiner
 	id = "allamericandiner"
