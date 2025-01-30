@@ -8,6 +8,7 @@
 	mob_trait = TRAIT_SYSTEM_SHOCK
 	icon = FA_ICON_PLUG_CIRCLE_XMARK
 	quirk_flags = QUIRK_HUMAN_ONLY
+	quirk_species = QUIRK_SYNTHETIC //IRIS EDIT
 
 /datum/quirk/system_shock/add(client/client_source)
 	if(issynthetic(quirk_holder))
