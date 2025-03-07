@@ -20,13 +20,16 @@
 	var/art_type = /datum/element/art
 	/// Abstract root type
 	var/abstract_type = /obj/structure/statue
+	/// IRIS ADDITION: Controls whether or not we want to be able to speak through the statue
+	var/should_marionette = TRUE
 
 /obj/structure/statue/Initialize(mapload)
 	. = ..()
 	AddElement(art_type, impressiveness)
 	AddElement(/datum/element/beauty, impressiveness * 75)
 	AddComponent(/datum/component/simple_rotation)
-	AddComponent(/datum/component/marionette)
+	if(should_marionette)
+		AddComponent(/datum/component/marionette)
 
 /obj/structure/statue/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -265,6 +268,7 @@
 	icon = 'icons/obj/art/statue.dmi'
 	icon_state = "chisel"
 	inhand_icon_state = "screwdriver_nuke"
+	icon_angle = -90
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -557,31 +561,10 @@ Moving interrupts
 /obj/structure/statue/custom/proc/set_visuals(model_appearance)
 	if(content_ma)
 		QDEL_NULL(content_ma)
-	content_ma = new
-	content_ma.appearance = model_appearance
+	content_ma = copy_appearance_filter_overlays(model_appearance)
 	content_ma.pixel_x = 0
 	content_ma.pixel_y = 0
 	content_ma.alpha = 255
-
-	var/static/list/plane_whitelist = list(FLOAT_PLANE, GAME_PLANE, FLOOR_PLANE)
-
-	/// Ideally we'd have knowledge what we're removing but i'd have to be done on target appearance retrieval
-	var/list/overlays_to_keep = list()
-	for(var/mutable_appearance/special_overlay as anything in content_ma.overlays)
-		var/mutable_appearance/real = new()
-		real.appearance = special_overlay
-		if(PLANE_TO_TRUE(real.plane) in plane_whitelist)
-			overlays_to_keep += real
-	content_ma.overlays = overlays_to_keep
-
-	var/list/underlays_to_keep = list()
-	for(var/mutable_appearance/special_underlay as anything in content_ma.underlays)
-		var/mutable_appearance/real = new()
-		real.appearance = special_underlay
-		if(PLANE_TO_TRUE(real.plane) in plane_whitelist)
-			underlays_to_keep += real
-	content_ma.underlays = underlays_to_keep
-
 	content_ma.appearance_flags &= ~KEEP_APART //Don't want this
 	content_ma.filters = filter(type="color",color=greyscale_with_value_bump,space=FILTER_COLOR_HSV)
 	update_content_planes()
@@ -608,3 +591,7 @@ Moving interrupts
 		. += content_ma
 
 #undef SCULPT_SOUND_INCREMENT
+
+//IRIS ADDITION: Structure base for silverscale tongue
+/obj/structure/statue/custom/silverscale
+	should_marionette = FALSE

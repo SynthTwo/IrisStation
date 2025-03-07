@@ -49,16 +49,9 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /// Adds the DNR HUD element if src has TRAIT_DNR. Removes it otherwise.
 /mob/living/proc/update_dnr_hud()
-	var/image/dnr_holder = hud_list?[DNR_HUD]
-	if(isnull(dnr_holder))
-		return
-
-	var/icon/temporary_icon = icon(icon, icon_state, dir)
-	dnr_holder.pixel_y = temporary_icon.Height() - ICON_SIZE_Y
-
+	set_hud_image_state(DNR_HUD, "hud_dnr")
 	if(HAS_TRAIT(src, TRAIT_DNR))
 		set_hud_image_active(DNR_HUD)
-		dnr_holder.icon_state = "hud_dnr"
 	else
 		set_hud_image_inactive(DNR_HUD)
 
@@ -218,7 +211,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /datum/quirk/feline_aspect/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/obj/item/organ/internal/tongue/cat/new_tongue = new(get_turf(human_holder))
+	var/obj/item/organ/tongue/cat/new_tongue = new(get_turf(human_holder))
 
 	ADD_TRAIT(human_holder, TRAIT_WATER_HATER, QUIRK_TRAIT)
 
@@ -227,7 +220,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /datum/quirk/feline_aspect/remove()
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/obj/item/organ/internal/tongue/new_tongue = new human_holder.dna.species.mutanttongue
+	var/obj/item/organ/tongue/new_tongue = new human_holder.dna.species.mutanttongue
 
 	REMOVE_TRAIT(human_holder, TRAIT_WATER_HATER, QUIRK_TRAIT)
 
@@ -246,14 +239,14 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /datum/quirk/canine_aspect/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/obj/item/organ/internal/tongue/dog/new_tongue = new(get_turf(human_holder))
+	var/obj/item/organ/tongue/dog/new_tongue = new(get_turf(human_holder))
 
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
 	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 /datum/quirk/canine_aspect/remove()
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/obj/item/organ/internal/tongue/new_tongue = new human_holder.dna.species.mutanttongue
+	var/obj/item/organ/tongue/new_tongue = new human_holder.dna.species.mutanttongue
 
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
 	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
@@ -270,14 +263,14 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /datum/quirk/avian_aspect/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/obj/item/organ/internal/tongue/avian/new_tongue = new(get_turf(human_holder))
+	var/obj/item/organ/tongue/avian/new_tongue = new(get_turf(human_holder))
 
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
 	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 /datum/quirk/avian_aspect/remove()
 	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/obj/item/organ/internal/tongue/new_tongue = new human_holder.dna.species.mutanttongue
+	var/obj/item/organ/tongue/new_tongue = new human_holder.dna.species.mutanttongue
 
 	new_tongue.copy_traits_from(human_holder.get_organ_slot(ORGAN_SLOT_TONGUE))
 	new_tongue.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
@@ -291,7 +284,6 @@ GLOBAL_LIST_INIT(possible_snout_sensitivities, list(
 	"Stun" = SEVERITY_STUN,
 	"Sneeze" = SEVERITY_SNEEZE, //Includes a stun
 	"Collapse" = SEVERITY_KNOCKDOWN,
-	"Blep" = SEVERITY_BLEP,
 ))
 
 /datum/quirk/sensitivesnout
@@ -335,15 +327,10 @@ GLOBAL_LIST_INIT(possible_snout_sensitivities, list(
 			to_chat(quirk_holder, span_warning("[attacker] boops you on your sensitive nose, sending you to the ground!"))
 			quirk_holder.Knockdown(1 SECONDS)
 			quirk_holder.apply_damage(30, STAMINA)
-		if(SEVERITY_BLEP)
-			if(can_emote)
-				to_chat(quirk_holder, span_warning("[attacker] boops you on your sensitive nose! You stick your tongue out on reflex!"))
-				quirk_holder.emote("blep")
 
 #undef SEVERITY_STUN
 #undef SEVERITY_SNEEZE
 #undef SEVERITY_KNOCKDOWN
-#undef SEVERITY_BLEP
 
 /datum/quirk/overweight
 	name = "Overweight"

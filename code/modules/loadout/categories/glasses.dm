@@ -55,3 +55,17 @@
 /datum/loadout_item/glasses/eyepatch
 	name = "Eyepatch"
 	item_path = /obj/item/clothing/glasses/eyepatch
+
+/** NOVA EDIT REMOVAL - We already have it in the loadout.
+/datum/loadout_item/glasses/eyepatch/medical
+	name = "Medical Eyepatch"
+	item_path = /obj/item/clothing/glasses/eyepatch/medical
+*/ // NOVA EDIT REMOVAL END
+
+/datum/loadout_item/glasses/prescription_glasses/kim
+	name = "Thin Glasses"
+	item_path = /obj/item/clothing/glasses/regular/kim
+
+/datum/loadout_item/glasses/monocle
+	name = "Monocle"
+	item_path = /obj/item/clothing/glasses/monocle

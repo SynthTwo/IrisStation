@@ -4,17 +4,30 @@
 	key = "fluff"
 	generic = "Fluff"
 	recommended_species = list(SPECIES_MOTH, SPECIES_MAMMAL, SPECIES_INSECT)
-	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER) // iris edit
 	genetic = TRUE
-	organ_type = /obj/item/organ/external/fluff
+	organ_type = /obj/item/organ/fluff
 
 /datum/sprite_accessory/fluff/moth/none
 	name = SPRITE_ACCESSORY_NONE
 	icon_state = "none"
 
-/datum/sprite_accessory/fluff/moth/is_hidden(mob/living/carbon/human/human)
-	if((human.head?.flags_inv & HIDEHAIR) || (human.wear_mask?.flags_inv & HIDEHAIR))
+/datum/sprite_accessory/fluff/moth/is_hidden(mob/living/carbon/human/wearer) // IRIS EDIT: I'm certain there's a better way to do this, but for now let's just mimic base wing behavior as before
+	if(!wearer.w_uniform && !wearer.wear_suit)
+		return FALSE
+	// Can hide if wearing uniform or outer wear
+	if(key in wearer.try_hide_mutant_parts)
 		return TRUE
+	// Exception for MODs
+	if(wearer.wear_suit)
+		if(istype(wearer.wear_suit, /obj/item/clothing/suit/mod))
+			return FALSE
+	// Hide accessory if flagged to do so, taking species exceptions in account
+		else if((wearer.wear_suit.flags_inv & HIDEJUMPSUIT) \
+				&& (!wearer.wear_suit.species_exception \
+				|| !is_type_in_list(wearer.dna.species, wearer.wear_suit.species_exception)) \
+			)
+			return TRUE
 
 	return FALSE
 
@@ -94,6 +107,30 @@
 /datum/sprite_accessory/fluff/moth/witchwing
 	name = "Witch Wing"
 	icon_state = "witchwing"
+
+/datum/sprite_accessory/fluff/moth/rosy //iris edit
+	name = "Rosy"
+	icon_state = "rosy"
+
+/datum/sprite_accessory/fluff/moth/featherful //iris edit
+	name = "Featherful"
+	icon_state = "featherful"
+
+/datum/sprite_accessory/fluff/moth/brown //iris edit
+	name = "Brown"
+	icon_state = "brown"
+
+/datum/sprite_accessory/fluff/moth/plasmafire //iris edit
+	name = "Plasmafire"
+	icon_state = "plasmafire"
+
+/datum/sprite_accessory/fluff/moth/moffra //iris edit
+	name = "Moffra"
+	icon_state = "moffra"
+
+/datum/sprite_accessory/fluff/moth/lightbearer //iris edit
+	name = "Lightbearer"
+	icon_state = "lightbearer"
 
 /datum/sprite_accessory/fluff/moth/insectm
 	name = "Insect male (Tertiary)"

@@ -1,6 +1,6 @@
 // LOADOUT ITEM DATUMS FOR BOTH HAND SLOTS
 /datum/loadout_category/inhands
-	tab_order = LOADOUT_INHANDS
+	tab_order = /datum/loadout_category/shoes::tab_order + 1
 
 /datum/loadout_item/inhand/pre_equip_item(datum/outfit/outfit, datum/outfit/outfit_important_for_life, mob/living/carbon/human/equipper, visuals_only = FALSE)
 	// if no hands are available then put in backpack
@@ -93,7 +93,7 @@
 	item_path = /obj/item/sign/flag/ssc
 
 /datum/loadout_item/inhand/flag_solfed
-	name = "Folded Sol Federation Flag"
+	name = "Folded Sol Government Flag" //IRIS EDIT
 	item_path = /obj/item/sign/flag/terragov
 
 /datum/loadout_item/inhand/flag_moghes

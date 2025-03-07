@@ -8,6 +8,7 @@
 	resistance_flags = NONE
 	custom_premium_price = PAYCHECK_COMMAND * 3.5
 	clothing_traits = list(TRAIT_FINGERPRINT_PASSTHROUGH,TRAIT_FAST_CUFFING)
+	equip_sound = 'sound/items/equip/glove_equip.ogg'
 	/// For storing our tackler datum so we can remove it after
 	var/datum/component/tackler
 	/// See: [/datum/component/tackler/var/stamina_cost]
@@ -92,7 +93,7 @@
 
 /obj/item/clothing/gloves/tackler/rocket
 	name = "rocket gloves"
-	desc = "The ultimate in high risk, high reward, perfect for when you need to stop a criminal from fifty feet away or die trying. Banned in most Spinward gridiron football and rugby leagues."
+	desc = "The ultimate in high risk, high reward, perfect for when you need to stop a criminal from fifty feet away or die trying. Banned in most Cabriole gridiron football and rugby leagues."
 	icon_state = "tacklerocket"
 	inhand_icon_state = null
 

@@ -53,7 +53,7 @@
 /obj/item/clothing/glasses/proc/thermal_overload()
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/H = src.loc
-		var/obj/item/organ/internal/eyes/eyes = H.get_organ_slot(ORGAN_SLOT_EYES)
+		var/obj/item/organ/eyes/eyes = H.get_organ_slot(ORGAN_SLOT_EYES)
 		if(!H.is_blind())
 			if(H.glasses == src)
 				to_chat(H, span_danger("[src] overloads and blinds you!"))
@@ -182,11 +182,46 @@
 	inhand_icon_state = null
 	actions_types = list(/datum/action/item_action/flip)
 	dog_fashion = /datum/dog_fashion/head/eyepatch
+	var/flipped = FALSE
 
-/obj/item/clothing/glasses/eyepatch/attack_self(mob/user, modifiers)
+/obj/item/clothing/glasses/eyepatch/click_alt(mob/user)
 	. = ..()
-	icon_state = (icon_state == base_icon_state) ? "[base_icon_state]_flipped" : base_icon_state
+	flip_eyepatch()
+
+/obj/item/clothing/glasses/eyepatch/attack_self(mob/user)
+	. = ..()
+	flip_eyepatch()
+
+/obj/item/clothing/glasses/eyepatch/proc/flip_eyepatch()
+	flipped = !flipped
+	icon_state = flipped ? "[base_icon_state]_flipped" : base_icon_state
+	if (!ismob(loc))
+		return
+	var/mob/user = loc
 	user.update_worn_glasses()
+	if (!ishuman(user))
+		return
+	var/mob/living/carbon/human/human_user = user
+	if (human_user.get_eye_scars() & (flipped ? RIGHT_EYE_SCAR : LEFT_EYE_SCAR))
+		tint = INFINITY
+	else
+		tint = initial(tint)
+	human_user.update_tint()
+
+/obj/item/clothing/glasses/eyepatch/equipped(mob/living/user, slot)
+	if (!ishuman(user))
+		return ..()
+	var/mob/living/carbon/human/human_user = user
+	// lol lmao
+	if (human_user.get_eye_scars() & (flipped ? RIGHT_EYE_SCAR : LEFT_EYE_SCAR))
+		tint = INFINITY
+	else
+		tint = initial(tint)
+	return ..()
+
+/obj/item/clothing/glasses/eyepatch/dropped(mob/living/user)
+	. = ..()
+	tint = initial(tint)
 
 /obj/item/clothing/glasses/eyepatch/medical
 	name = "medical eyepatch"
@@ -308,25 +343,53 @@
 /obj/item/clothing/glasses/regular/thin
 	name = "thin prescription glasses"
 	desc = "More expensive, more fragile and much less practical, but oh so fashionable."
-	icon_state = "glasses_thin"
+	//IRIS EDIT: GAGSifies prescription glasses
+	worn_icon = 'modular_iris/modules/GAGS/icons/glasses/glasses_worn.dmi'
+	icon = 'modular_iris/modules/GAGS/icons/glasses/glasses.dmi'
+	icon_state = "glasses_thin_color"
+	greyscale_config = /datum/greyscale_config/glasses_thin_color
+	greyscale_config_worn = /datum/greyscale_config/glasses_thin_color/worn
+	greyscale_colors = "#0d0d0d#FFFFFF"
+	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/glasses/regular/jamjar
 	name = "jamjar glasses"
 	desc = "Also known as Virginity Protectors."
-	icon_state = "glasses_jamjar"
+	//IRIS EDIT: GAGSifies prescription glasses
+	worn_icon = 'modular_iris/modules/GAGS/icons/glasses/glasses_worn.dmi'
+	icon = 'modular_iris/modules/GAGS/icons/glasses/glasses.dmi'
+	icon_state = "glasses_jamjar_color"
+	greyscale_config = /datum/greyscale_config/glasses_jamjar_color
+	greyscale_config_worn = /datum/greyscale_config/glasses_jamjar_color/worn
+	greyscale_colors = "#575757#FFFFFF"
+	flags_1 = IS_PLAYER_COLORABLE_1
 	inhand_icon_state = "glasses_jamjar"
 
 /obj/item/clothing/glasses/regular/hipster
 	name = "prescription glasses"
 	desc = "Made by Uncool. Co."
-	icon_state = "glasses_hipster"
+	//IRIS EDIT: GAGSifies prescription glasses
+	worn_icon = 'modular_iris/modules/GAGS/icons/glasses/glasses_worn.dmi'
+	icon = 'modular_iris/modules/GAGS/icons/glasses/glasses.dmi'
+	icon_state = "glasses_hipster_color"
+	greyscale_config = /datum/greyscale_config/glasses_hipster_color
+	greyscale_config_worn = /datum/greyscale_config/glasses_hipster_color/worn
+	greyscale_colors = "#464646#FFFFFF"
+	flags_1 = IS_PLAYER_COLORABLE_1
 	inhand_icon_state = null
 
 /obj/item/clothing/glasses/regular/circle
 	name = "circle glasses"
 	desc = "Why would you wear something so controversial yet so brave?"
-	icon_state = "glasses_circle"
-	inhand_icon_state = null
+	//IRIS EDIT: GAGSifies prescription glasses
+	worn_icon = 'modular_iris/modules/GAGS/icons/glasses/glasses_worn.dmi'
+	icon = 'modular_iris/modules/GAGS/icons/glasses/glasses.dmi'
+	icon_state = "glasses_circle_color"
+	greyscale_config = /datum/greyscale_config/glasses_circle_color
+	greyscale_config_worn = /datum/greyscale_config/glasses_circle_color/worn
+	greyscale_colors = "#0d0d0d#FFFFFF"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	inhand_icon_state = "glasses_jamjar"
 
 //Here lies green glasses, so ugly they died. RIP
 
@@ -408,6 +471,12 @@
 	inhand_icon_state = "gar"
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
+/obj/item/clothing/glasses/sunglasses/noir
+	name = "noir glasses"
+	desc = "A pair of sleek, futuristic glasses that allow the wearer to see the world in a different light."
+	glass_colour_type = /datum/client_colour/monochrome
+	forced_glass_color =  TRUE
+
 ///Syndicate item that upgrades the flash protection of your eyes.
 /obj/item/syndicate_contacts
 	name = "suspicious contact lens case"
@@ -421,7 +490,7 @@
 	if(!user.get_organ_slot(ORGAN_SLOT_EYES))
 		to_chat(user, span_warning("You have no eyes to apply the contacts to!"))
 		return
-	var/obj/item/organ/internal/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 
 	to_chat(user, span_notice("You begin applying the contact lenses to your eyes..."))
 	if(!do_after(user, 3 SECONDS, src))

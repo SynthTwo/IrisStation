@@ -52,6 +52,8 @@
 	var/sound
 	/// Does this emote vary in pitch?
 	var/vary = FALSE
+	/// If this emote's sound is affected by TTS pitch
+	var/affected_by_pitch = TRUE
 	/// Can only code call this event instead of the player.
 	var/only_forced_audio = FALSE
 	/// The cooldown between the uses of the emote.
@@ -387,8 +389,11 @@
  */
 /datum/emote/proc/should_play_sound(mob/user, intentional = FALSE)
 	if(emote_type & EMOTE_AUDIBLE && !hands_use_check)
+	//IRIS REMOVAL
+	/*
 		if(HAS_TRAIT(user, TRAIT_MUTE))
 			return FALSE
+	*/
 		if(ishuman(user))
 			var/mob/living/carbon/human/loud_mouth = user
 			if(HAS_MIND_TRAIT(loud_mouth, TRAIT_MIMING)) // vow of silence prevents outloud noises

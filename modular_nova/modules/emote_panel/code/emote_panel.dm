@@ -131,7 +131,6 @@
 		/mob/living/proc/emote_caw,
 		/mob/living/proc/emote_caw2,
 		/mob/living/proc/emote_whistle,
-		/mob/living/proc/emote_blep,
 		/mob/living/proc/emote_bork,
 		/mob/living/proc/emote_hoot,
 		/mob/living/proc/emote_growl,
@@ -237,7 +236,7 @@
 			available_emotes += human_emotes
 			var/mob/living/carbon/human/current_mob = src
 			// Checking if can wag tail
-			var/obj/item/organ/external/tail/tail = current_mob.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
+			var/obj/item/organ/tail/tail = current_mob.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL)
 			if(!(tail?.wag_flags & WAG_ABLE))
 				available_emotes -= /mob/living/carbon/human/proc/emote_wag
 			// Checking if has wings
@@ -787,11 +786,6 @@
 	set name = "~ Whistle"
 	set category = "Emotes+"
 	usr.emote("whistle", intentional = TRUE)
-
-/mob/living/proc/emote_blep()
-	set name = "~ Blep"
-	set category = "Emotes+"
-	usr.emote("blep", intentional = TRUE)
 
 /mob/living/proc/emote_bork()
 	set name = "> Bork"

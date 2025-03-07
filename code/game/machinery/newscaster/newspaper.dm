@@ -1,3 +1,4 @@
+//IRIS EDIT SPRITES OVERRIDEN IN PARADISE_PORTS
 /**
  * Newspapers
  * A static version of the newscaster, that won't update as new stories are added.
@@ -89,6 +90,7 @@
 		return
 	add_fingerprint(user)
 	user.balloon_alert(user, "scribbling...")
+	playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 	if(!do_after(user, 2 SECONDS, src))
 		return
 	user.balloon_alert(user, "scribbled!")

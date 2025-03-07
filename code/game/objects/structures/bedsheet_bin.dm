@@ -12,8 +12,8 @@ LINEN BINS
 	righthand_file = 'icons/mob/inhands/items/bedsheet_righthand.dmi'
 	icon_state = "sheetwhite"
 	inhand_icon_state = "sheetwhite"
-	drop_sound = 'sound/items/handling/cloth_drop.ogg'
-	pickup_sound = 'sound/items/handling/cloth_pickup.ogg'
+	drop_sound = SFX_CLOTH_DROP
+	pickup_sound = SFX_CLOTH_PICKUP
 	slot_flags = ITEM_SLOT_NECK
 	layer = BELOW_MOB_LAYER
 	throwforce = 0
@@ -574,7 +574,7 @@ LINEN BINS
 /obj/structure/bedsheetbin
 	name = "linen bin"
 	desc = "It looks rather cosy."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'modular_iris/paradise_ports/icons/obj/structures.dmi' //IRIS EDIT
 	icon_state = "linenbin-full"
 	base_icon_state = "linenbin"
 	anchored = TRUE
@@ -583,7 +583,7 @@ LINEN BINS
 	max_integrity = 70
 	anchored_tabletop_offset = 6
 	/// The number of bedsheets in the bin
-	var/amount = 10
+	var/amount = 20 //IRIS EDIT
 	/// A list of actual sheets within the bin
 	var/list/sheets = list()
 	/// The object hiddin within the bedsheet bin
@@ -631,15 +631,19 @@ LINEN BINS
 		. = CONTEXTUAL_SCREENTIP_SET
 	return .
 
+//IRIS EDIT START
 /obj/structure/bedsheetbin/update_icon_state()
 	switch(amount)
 		if(0)
 			icon_state = "[base_icon_state]-empty"
-		if(1 to 5)
+		if(1 to 6)
+			icon_state = "[base_icon_state]-few"
+		if(7 to 15)
 			icon_state = "[base_icon_state]-half"
 		else
 			icon_state = "[base_icon_state]-full"
 	return ..()
+//IRIS EDIT END
 
 /obj/structure/bedsheetbin/fire_act(exposed_temperature, exposed_volume)
 	if(amount)

@@ -26,10 +26,13 @@
 		CRASH("revolver tried to chamber a round without a magazine!")
 	if(chambered)
 		UnregisterSignal(chambered, COMSIG_MOVABLE_MOVED)
-	if(spin_cylinder)
-		chambered = magazine.get_round(TRUE)
+	if (spin_cylinder)
+		chambered = magazine.get_round()
 	else
 		chambered = magazine.stored_ammo[1]
+		if (ispath(chambered))
+			chambered = new chambered(src)
+			magazine.stored_ammo[1] = chambered
 	if(chambered)
 		RegisterSignal(chambered, COMSIG_MOVABLE_MOVED, PROC_REF(clear_chambered))
 
@@ -100,13 +103,14 @@
 
 /obj/item/gun/ballistic/revolver/ignition_effect(atom/A, mob/user)
 	if(last_fire && last_fire + 15 SECONDS > world.time)
-		. = span_notice("[user] touches the end of [src] to \the [A], using the residual heat to ignite it in a puff of smoke. What a badass.")
+		return span_rose("[user] touches the end of [src] to \the [A], using the residual heat to ignite it in a puff of smoke. What a badass.")
 
 /obj/item/gun/ballistic/revolver/c38
 	name = "\improper .38 revolver"
 	desc = "A classic, if not outdated, lethal firearm. Uses .38 Special rounds."
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38
 	icon_state = "c38"
+	base_icon_state = "c38"
 	fire_sound = 'sound/items/weapons/gun/revolver/shot.ogg'
 
 /obj/item/gun/ballistic/revolver/c38/detective
@@ -301,7 +305,9 @@
 /obj/item/gun/ballistic/revolver/reverse/can_trigger_gun(mob/living/user, akimbo_usage)
 	if(akimbo_usage)
 		return FALSE
-	if(HAS_TRAIT(user, TRAIT_CLUMSY) || is_clown_job(user.mind?.assigned_role))
+	//IRIS EDIT CHANGE BEGIN - HANDEDNESS_QUIRK, makes this truly clown-only
+	if(is_clown_job(user.mind?.assigned_role) || user.mind?.has_antag_datum(/datum/antagonist/nukeop/clownop) || user.mind?.has_antag_datum(/datum/antagonist/nukeop/leader/clownop))
+	//IRIS EDIT CHANGE END
 		return ..()
 	if(process_fire(user, user, FALSE, null, BODY_ZONE_HEAD))
 		user.visible_message(span_warning("[user] somehow manages to shoot [user.p_them()]self in the face!"), span_userdanger("You somehow shoot yourself in the face! How the hell?!"))
@@ -315,3 +321,9 @@
 	clumsy_check = FALSE
 	icon_state = "mateba"
 
+/obj/item/gun/ballistic/revolver/peashooter
+	name = "peashooter"
+	icon_state = "peashooter"
+	desc = "A wild plantlife mutation that shoots hardened peas. Incredible."
+	fire_sound = 'sound/items/weapons/peashoot.ogg'
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/peashooter

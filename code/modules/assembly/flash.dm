@@ -61,7 +61,10 @@
 	return ..()
 
 /obj/item/assembly/flash/proc/clown_check(mob/living/carbon/human/user)
-	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
+	//IRIS EDIT CHANGE BEGIN - HANDEDNESS_QUIRK
+	var/hand_index = user.active_hand_index
+	if(prob(50) && (HAS_TRAIT(user, TRAIT_CLUMSY) || (HAS_TRAIT(user, TRAIT_HANDEDNESS) && IS_LEFT_INDEX(hand_index)) || (HAS_TRAIT(user, TRAIT_HANDEDNESS_LEFT) && IS_RIGHT_INDEX(hand_index))))
+	//IRIS EDIT CHANGE END
 		flash_carbon(user, user, confusion_duration = 15 SECONDS, targeted = FALSE)
 		return FALSE
 	return TRUE
@@ -313,7 +316,7 @@
 	var/datum/weakref/arm
 
 /obj/item/assembly/flash/armimplant/burn_out()
-	var/obj/item/organ/internal/cyberimp/arm/flash/real_arm = arm.resolve()
+	var/obj/item/organ/cyberimp/arm/flash/real_arm = arm.resolve()
 	if(real_arm?.owner)
 		to_chat(real_arm.owner, span_warning("Your photon projector implant overheats and deactivates!"))
 		real_arm.Retract()
@@ -322,7 +325,7 @@
 
 /obj/item/assembly/flash/armimplant/try_use_flash(mob/user = null)
 	if(overheat)
-		var/obj/item/organ/internal/cyberimp/arm/flash/real_arm = arm.resolve()
+		var/obj/item/organ/cyberimp/arm/flash/real_arm = arm.resolve()
 		if(real_arm?.owner)
 			to_chat(real_arm.owner, span_warning("Your photon projector is running too hot to be used again so quickly!"))
 		return FALSE

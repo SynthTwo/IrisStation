@@ -7,7 +7,7 @@
 	default = "Game Master"
 	protection = CONFIG_ENTRY_LOCKED
 
-/datum/config_entry/flag/auto_deadmin_players
+/datum/config_entry/flag/auto_deadmin_always
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/number/auto_deadmin_timegate
@@ -18,6 +18,9 @@
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/auto_deadmin_heads
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/flag/auto_deadmin_on_ready_or_latejoin
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/auto_deadmin_silicons
@@ -312,19 +315,21 @@
 
 /datum/config_entry/string/server
 
+/datum/config_entry/string/public_address
+
 /datum/config_entry/string/banappeals
 
 /datum/config_entry/string/wikiurl
-	default = "https://wiki.novasector13.com/index.php" //NOVA EDIT CHANGE - Original: default = "http://tgstation13.org/wiki"
+	default = "https://wiki.irisstation.lol/wiki" //IRIS EDIT: - Original: default = "https://wiki.novasector13.com/index.php"
 
 /datum/config_entry/string/forumurl
-	default = "http://tgstation13.org/phpBB/index.php"
+	default = "https://forum.irisstation.lol" //IRIS EDIT
 
 /datum/config_entry/string/rulesurl
-	default = "http://tgstation13.org/wiki/Rules"
+	default = "https://wiki.irisstation.lol/wiki/Rules" //IRIS EDIT
 
 /datum/config_entry/string/githuburl
-	default = "https://www.github.com/tgstation/tgstation"
+	default = "https://github.com/IrisSS13/IrisStation" //IRIS EDIT
 
 /datum/config_entry/string/discordbotcommandprefix
 	default = "?"
@@ -571,25 +576,22 @@
 	integer = FALSE
 
 /datum/config_entry/flag/irc_announce_new_game
-	deprecated_by = /datum/config_entry/string/channel_announce_new_game
+	deprecated_by = /datum/config_entry/str_list/channel_announce_new_game
 
 /datum/config_entry/flag/irc_announce_new_game/DeprecationUpdate(value)
 	return "" //default broadcast
 
 /datum/config_entry/string/chat_announce_new_game
-	deprecated_by = /datum/config_entry/string/channel_announce_new_game
+	deprecated_by = /datum/config_entry/str_list/channel_announce_new_game
 
 /datum/config_entry/string/chat_announce_new_game/DeprecationUpdate(value)
 	return "" //default broadcast
 
-/datum/config_entry/string/channel_announce_new_game
-	default = null
+/datum/config_entry/str_list/channel_announce_new_game
 
-/datum/config_entry/string/channel_announce_end_game
-	default = null
+/datum/config_entry/str_list/channel_announce_end_game
 
-/datum/config_entry/string/chat_new_game_notifications
-	default = null
+/datum/config_entry/str_list/chat_new_game_notifications
 
 /// validate ownership of admin flags for chat commands
 /datum/config_entry/flag/secure_chat_commands
@@ -764,3 +766,11 @@
 	default = 100
 	min_val = 0
 	max_val = 100
+
+/// If admins with +DEBUG can initialize byond-tracy midround.
+/datum/config_entry/flag/allow_tracy_start
+	protection = CONFIG_ENTRY_LOCKED
+
+/// If admins with +DEBUG can queue byond-tracy to run the next round.
+/datum/config_entry/flag/allow_tracy_queue
+	protection = CONFIG_ENTRY_LOCKED

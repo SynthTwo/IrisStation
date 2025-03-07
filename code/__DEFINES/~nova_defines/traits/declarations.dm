@@ -15,6 +15,7 @@
 #define TRAIT_EXCITABLE "wagwag" //Will wag when patted!
 #define TRAIT_OXYIMMUNE	"oxyimmune" // Immune to oxygen damage, ideally give this to all non-breathing species or bad stuff will happen
 #define TRAIT_AFFECTION_AVERSION "affection_aversion" // No more dogborg licking. "Dogborg bad" is no longer a personality
+#define TRAIT_SENSITIVE_HEARING "sensitive_hearing" // Teshari hearing, but as a quirk
 #define TRAIT_PERSONALSPACE "personalspace" // Block/counter-attack ass-slaps
 #define TRAIT_QUICKREFLEXES "quickreflexes" // Counters hugs and headpats
 #define TRAIT_MOOD_NOEXAMINE "mood_noexamine" // Can't assess your own mood
@@ -45,6 +46,9 @@
 
 /// One can breath under water, you get me?
 #define TRAIT_WATER_BREATHING "water_breathing"
+
+/// Trait to assign to pets who've already had a space treat to prevent double-feeding
+#define TRAIT_PET_SPACE_TREAT "space_pet_treat"
 
 /// The trait which Akulas inherit, for their species mechanic revolving around wet_stacks
 #define TRAIT_SLICK_SKIN "slick_skin"
@@ -139,24 +143,6 @@
 #define TRAIT_R_SMALL "small_chassis"
 /// Any model that has a custom front panel
 #define TRAIT_R_UNIQUEPANEL "unique_openpanel"
-
-// Lewd traits
-#define TRAIT_MASOCHISM "masochism"
-#define TRAIT_SADISM "sadism"
-#define TRAIT_NEVERBONER "neverboner"
-#define TRAIT_BIMBO "bimbo"
-#define TRAIT_RIGGER "rigger"
-#define TRAIT_ROPEBUNNY "rope bunny"
-///traits gained by brain traumas, can be removed if the brain trauma is gone
-#define TRAIT_APHRO "aphro"
-///traits gained by quirks, cannot be removed unless the quirk itself is gone
-#define TRAIT_LEWDQUIRK "lewdquirks"
-///traits gained by chemicals, you get the idea
-#define TRAIT_LEWDCHEM "lewdchem"
-
-#define TRAIT_STRAPON "strapon"
-
-#define TRAIT_CONDOM_BROKEN "broken"
 
 /// If clothing can also be damaged by piercing wound checks, instead of JUST slashes and burns
 #define TRAIT_CLOTHES_DAMAGED_BY_PIERCING "clothing_damaged_by_piercing"

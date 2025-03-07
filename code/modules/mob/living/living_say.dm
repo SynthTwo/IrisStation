@@ -237,7 +237,8 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	message_mods[SAY_MOD_VERB] = say_mod(message, message_mods)
 	// NOVA EDIT ADDITION START: autopunctuation
 	//ensure EOL punctuation exists and that word-bounded 'i' are capitalized before we do anything else
-	message = autopunct_bare(message)
+	if(client?.prefs?.read_preference(/datum/preference/toggle/autopunctuation)) //IRIS ADDITION: Can be turned off now
+		message = autopunct_bare(message)
 	// NOVA EDIT ADDITION END
 
 	//This is before anything that sends say a radio message, and after all important message type modifications, so you can scumb in alien chat or something
@@ -325,7 +326,8 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		if(deaf_message)
 			deaf_type = MSG_VISUAL
 			message = deaf_message
-			return show_message(message, MSG_VISUAL, deaf_message, deaf_type, avoid_highlight)
+			show_message(message, MSG_VISUAL, deaf_message, deaf_type, avoid_highlight)
+			return FALSE
 
 
 	// we need to send this signal before compose_message() is used since other signals need to modify
@@ -445,8 +447,8 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			filter += tts_filter.Join(",")
 
 		var/voice_to_use = get_tts_voice(filter, special_filter)
-
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice_to_use, filter.Join(","), listened, message_range = message_range, pitch = pitch, special_filters = special_filter.Join("|"))
+		if (!CONFIG_GET(flag/tts_no_whisper) || (CONFIG_GET(flag/tts_no_whisper) && !message_mods[WHISPER_MODE]))
+			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice_to_use, filter.Join(","), listened, message_range = message_range, pitch = pitch, special_filters = special_filter.Join("|"))
 
 	var/image/say_popup = image('icons/mob/effects/talk.dmi', src, "[bubble_type][talk_icon_state]", FLY_LAYER)
 	SET_PLANE_EXPLICIT(say_popup, ABOVE_GAME_PLANE, src)

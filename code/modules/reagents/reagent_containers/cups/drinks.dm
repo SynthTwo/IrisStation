@@ -31,11 +31,11 @@
 	qdel(src)
 	target.Bumped(B)
 
-/obj/item/reagent_containers/cup/glass/bullet_act(obj/projectile/P)
+/obj/item/reagent_containers/cup/glass/bullet_act(obj/projectile/proj)
 	. = ..()
 	if(QDELETED(src))
 		return
-	if(P.damage > 0 && P.damage_type == BRUTE)
+	if(proj.damage > 0 && proj.damage_type == BRUTE)
 		var/atom/T = get_turf(src)
 		smash(T)
 
@@ -254,7 +254,12 @@
 		to_chat(user, span_warning("The cap seems to be missing! Where did it go?"))
 		return CLICK_ACTION_BLOCKING
 
-	var/fumbled = HAS_TRAIT(user, TRAIT_CLUMSY) && prob(5)
+	//IRIS EDIT CHANGE BEGIN - HANDEDNESS_QUIRK
+	var/fumbled = FALSE
+	var/hand_index = user.active_hand_index
+	if(prob(5) && (HAS_TRAIT(user, TRAIT_CLUMSY) || (HAS_TRAIT(user, TRAIT_HANDEDNESS) && IS_LEFT_INDEX(hand_index)) || (HAS_TRAIT(user, TRAIT_HANDEDNESS_LEFT) && IS_RIGHT_INDEX(hand_index))))
+		fumbled = TRUE
+	//IRIS EDIT CHANGE END
 	if(cap_on || fumbled)
 		cap_on = FALSE
 		spillable = TRUE
@@ -264,11 +269,12 @@
 			cap_lost = TRUE
 		else
 			to_chat(user, span_notice("You remove the cap from [src]."))
-			playsound(loc, 'sound/effects/can/can_open1.ogg', 50, TRUE)
+			playsound(loc, 'sound/items/handling/reagent_containers/plastic_bottle/bottle_cap_open.ogg', 50, TRUE)
 	else
 		cap_on = TRUE
 		spillable = FALSE
 		to_chat(user, span_notice("You put the cap on [src]."))
+		playsound(loc, 'sound/items/handling/reagent_containers/plastic_bottle/bottle_cap_close.ogg', 50, TRUE)
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
 
@@ -540,7 +546,7 @@
 
 /obj/item/reagent_containers/cup/glass/mug/britcup
 	name = "cup"
-	desc = "A cup with the british flag emblazoned on it."
+	desc = "A cup with the British flag emblazoned on it."
 	icon = 'icons/obj/drinks/coffee.dmi'
 	icon_state = "britcup_empty"
 	base_icon_state = "britcup"
