@@ -112,9 +112,6 @@
 	///used to override the mouse cursor so it doesnt get reset
 	var/mouse_override_icon = null
 
-	///Used for ip intel checking to identify evaders, disabled because of issues with traffic
-	var/ip_intel = "Disabled"
-
 	///datum that controls the displaying and hiding of tooltips
 	var/datum/tooltip/tooltips
 

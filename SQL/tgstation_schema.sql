@@ -735,6 +735,39 @@ CREATE TABLE `tutorial_completions` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `ckey_tutorial_unique` (`ckey`, `tutorial_key`));
 
+--
+-- Table structure for table `overwatch_asn_ban`
+--
+DROP TABLE IF EXISTS `overwatch_asn_ban`;
+CREATE TABLE `overwatch_asn_ban` (
+	`ip` varchar(21) NOT NULL,
+	`asn` varchar(100) NOT NULL,
+	`a_ckey` varchar(30) NOT NULL,
+	`timestamp` datetime NOT NULL,
+	PRIMARY KEY (`asn`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+--
+-- Table structure for table `overwatch_ip_cache`
+--
+DROP TABLE IF EXISTS `overwatch_ip_cache`;
+CREATE TABLE `overwatch_ip_cache` (
+	`ip` varchar(50) NOT NULL DEFAULT '',
+	`response` longtext NOT NULL,
+	PRIMARY KEY (`ip`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+--
+-- Table structure for table `overwatch_whitelist`
+--
+DROP TABLE IF EXISTS `overwatch_whitelist`;
+CREATE TABLE `overwatch_whitelist` (
+	`ckey` varchar(30) NOT NULL,
+	`a_ckey` varchar(30) NOT NULL,
+	`timestamp` datetime NOT NULL,
+	PRIMARY KEY (`ckey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

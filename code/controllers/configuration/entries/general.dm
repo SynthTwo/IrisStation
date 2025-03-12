@@ -454,41 +454,6 @@
 
 /datum/config_entry/flag/irc_first_connection_alert // do we notify the irc channel when somebody is connecting for the first time?
 
-/datum/config_entry/string/ipintel_base
-	default = "check.getipintel.net"
-
-/datum/config_entry/string/ipintel_email
-
-/datum/config_entry/string/ipintel_email/ValidateAndSet(str_val)
-	return str_val != "ch@nge.me" && (!length(str_val) || findtext(str_val, "@")) && ..()
-
-/datum/config_entry/number/ipintel_rating_bad
-	default = 1
-	integer = FALSE
-	min_val = 0
-	max_val = 1
-
-/datum/config_entry/flag/ipintel_reject_rate_limited
-	default = FALSE
-
-/datum/config_entry/flag/ipintel_reject_bad
-	default = FALSE
-
-/datum/config_entry/flag/ipintel_reject_unknown
-	default = FALSE
-
-/datum/config_entry/number/ipintel_rate_minute
-	default = 15
-	min_val = 0
-
-/datum/config_entry/number/ipintel_cache_length
-	default = 7
-	min_val = 0
-
-/datum/config_entry/number/ipintel_exempt_playtime_living
-	default = 5
-	min_val = 0
-
 /datum/config_entry/flag/aggressive_changelog
 
 /datum/config_entry/flag/autoconvert_notes //if all connecting player's notes should attempt to be converted to the database
@@ -774,3 +739,6 @@
 /// If admins with +DEBUG can queue byond-tracy to run the next round.
 /datum/config_entry/flag/allow_tracy_queue
 	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/flag/vpn_kick // Iris EDIT - For Overwatch
+	default = FALSE

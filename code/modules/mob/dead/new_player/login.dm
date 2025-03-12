@@ -54,6 +54,11 @@
 	// The parent call for Login() may do a bunch of stuff, like add verbs.
 	// Delaying the register_for_interview until the very end makes sure it can clean everything up
 	// and set the player's client up for interview.
+
+	client.check_overwatch() // IRIS EDIT - Overwatch
+	if(QDELETED(client)) // client disconnected during overwatch check
+		return FALSE
+
 	if(client.interviewee)
 		register_for_interview()
 		return
@@ -61,4 +66,3 @@
 	if(SSticker.current_state < GAME_STATE_SETTING_UP)
 		var/tl = SSticker.GetTimeLeft()
 		to_chat(src, "Please set up your character and select \"Ready\". The game will start [tl > 0 ? "in about [DisplayTimeText(tl)]" : "soon"].")
-

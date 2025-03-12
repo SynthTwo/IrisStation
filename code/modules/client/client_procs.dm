@@ -519,8 +519,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			var/new_player_alert_role = CONFIG_GET(string/new_player_alert_role_id)
 			send2tgs_adminless_only(
 				"new_byond_user",
-				"[key_name(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age == 1?"":"s")] old, created on [account_join_date].[new_player_alert_role ? " <@&[new_player_alert_role]>" : ""]"
-			)
+				"[key_name(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age == 1?"":"s")] old, created on [account_join_date].[new_player_alert_role ? " <@&[new_player_alert_role]>" : ""]")
+	if(check_overwatch() && CONFIG_GET(flag/vpn_kick)) // IRIS EDIT - Adds Overwatch
+		return
 	scream_about_watchlists(src)
 	validate_key_in_db()
 	// If we aren't already generating a ban cache, fire off a build request
@@ -551,7 +552,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		to_chat(src, span_warning("Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you."))
 
 	update_ambience_pref(prefs.read_preference(/datum/preference/numeric/volume/sound_ambience_volume))
-	check_ip_intel()
 
 	//This is down here because of the browse() calls in tooltip/New()
 	if(!tooltips)
@@ -1282,6 +1282,41 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	message_to_send += "(No admins online)"
 
 	send2adminchat("Server", jointext(message_to_send, " "))
+
+/client/proc/log_client_to_db_connection_log()
+	if(!SSdbcore.shutting_down)
+		SSdbcore.FireAndForget({"
+			INSERT INTO `[format_table_name("connection_log")]` (`id`,`datetime`,`server_ip`,`server_port`,`round_id`,`ckey`,`ip`,`computerid`)
+			VALUES(null,Now(),INET_ATON(:internet_address),:port,:round_id,:ckey,INET_ATON(:ip),:computerid)
+		"}, list("internet_address" = world.internet_address || "0", "port" = world.port, "round_id" = GLOB.round_id, "ckey" = ckey, "ip" = address, "computerid" = computer_id))
+
+/client/proc/check_overwatch()
+	var/failed = FALSE
+	SSoverwatch.CollectClientData(src)
+	failed = SSoverwatch.HandleClientAccessCheck(src)
+	SSoverwatch.HandleASNbanCheck(src)
+
+	var/string
+	if(ip_info)
+		if(ip_info.ip_proxy)
+			string += "Proxy IP"
+		if(ip_info.ip_hosting)
+			if(string)
+				string += ", "
+			string += "Hosted IP"
+		if(ip_info.ip_mobile)
+			if(string)
+				string += ", "
+			string += "Mobile Hostspot IP"
+
+	if(failed && !(ckey in GLOB.interviews.approved_ckeys))
+		message_admins(span_adminnotice("Proxy Detection: [key_name_admin(src)] Overwatch detected this is a [string]"))
+		interviewee = TRUE
+
+	if(ckey in GLOB.interviews.approved_ckeys)
+		return FALSE
+
+	return failed
 
 #undef ADMINSWARNED_AT
 #undef CURRENT_MINUTE
