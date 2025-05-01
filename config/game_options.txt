@@ -411,6 +411,7 @@ ROUNDSTART_RACES abductorweak
 ROUNDSTART_RACES kobold
 
 ROUNDSTART_RACES nabber
+ROUNDSTART_RACES shrimp
 ##-------------------------------------------------------------------------------------------
 
 ## Roundstart no-reset races
