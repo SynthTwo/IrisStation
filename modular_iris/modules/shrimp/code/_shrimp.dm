@@ -2,17 +2,18 @@
 	name = "Shrimp"
 	id = SPECIES_SHRIMP
 	mutant_bodyparts = list()
+	exotic_blood = BLOOD_TYPE_SHRIMP
 	say_mod = "burbles"
 	sexes = FALSE // shrimp are shrimp, nothing more nothing less
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	meat = /obj/item/food/fishmeat
 	mutanttongue = /obj/item/organ/tongue/shrimp
-	hair_alpha = 0
+	hair_alpha = 0 //shrimp can't have hair
 	mutant_organs = list()
 	mutant_bodyparts = list()
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
-		TRAIT_GENELESS,// they are shrimp
+		TRAIT_GENELESS,
 		TRAIT_MUTANT_COLORS,
 		TRAIT_WATER_BREATHING,
 		EYE_COLOR,
