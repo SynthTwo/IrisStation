@@ -13,7 +13,7 @@
 	if(message[1] == "*") // They are emoting, no point in looking
 		return
 
-	message = replacetext(message, "simp", "shrimp") // We are not simps
+	message = replacetext(message, "simple", "shrimple") // We are not simps
 	message = replacetext(message, "confusing", "conchfusing")
 	message = replacetext(message, "complicated", "clampified")
 	message = replacetext(message, "self", "shellf")

@@ -7,13 +7,17 @@
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	meat = /obj/item/food/fishmeat
 	mutanttongue = /obj/item/organ/tongue/shrimp
+	hair_alpha = 0
 	mutant_organs = list()
 	mutant_bodyparts = list()
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
-		TRAIT_GENELESS,
+		TRAIT_GENELESS,// they are shrimp
 		TRAIT_MUTANT_COLORS,
 		TRAIT_WATER_BREATHING,
+		EYE_COLOR,
+		TRAIT_NO_UNDERWEAR,
+		TRAIT_HARD_SOLES,
 		)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	bodypart_overrides = list(
