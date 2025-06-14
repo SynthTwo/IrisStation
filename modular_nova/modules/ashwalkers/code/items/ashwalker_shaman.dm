@@ -38,7 +38,6 @@
 	target_turf.ChangeTurf(/turf/open/misc/asteroid/basalt/lava_land_surface)
 	return ITEM_INTERACT_SUCCESS
 
-
 //generic ash item recipe
 /datum/crafting_recipe/ash_recipe
 	reqs = list(
