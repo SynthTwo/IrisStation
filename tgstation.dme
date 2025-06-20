@@ -6838,6 +6838,8 @@
 #include "modular_iris\modules\ashwalkers\code\effects\ash_rituals.dm"
 #include "modular_iris\modules\ashwalkers\code\items\ash_weapon.dm"
 #include "modular_iris\modules\autoimplanter\code\implanter.dm"
+#include "modular_iris\modules\birthday\code\birthday.dm"
+#include "modular_iris\modules\birthday\code\client\preferences\bday.dm"
 #include "modular_iris\modules\bitrunning\code\quantum_console.dm"
 #include "modular_iris\modules\bitrunning\code\telecomms_relays.dm"
 #include "modular_iris\modules\blood_bags\blood_stuff.dm"
