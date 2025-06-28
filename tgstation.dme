@@ -6910,6 +6910,7 @@
 #include "modular_iris\modules\modular_vending\code\clothing.dm"
 #include "modular_iris\modules\modular_vending\code\vending.dm"
 #include "modular_iris\modules\modular_vending\code\wardrobes.dm"
+#include "modular_iris\modules\mutations\code\datums\smile.dm"
 #include "modular_iris\modules\NTSL\code\achievements.dm"
 #include "modular_iris\modules\NTSL\code\filter.dm"
 #include "modular_iris\modules\NTSL\code\global.dm"
