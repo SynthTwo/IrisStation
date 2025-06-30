@@ -7025,6 +7025,7 @@
 #include "modular_iris\paradise_ports\aesthetics\code\modules\power\smes.dm"
 #include "modular_iris\paradise_ports\aesthetics\code\modules\power\smes_portable.dm"
 #include "modular_iris\paradise_ports\aesthetics\code\modules\windows\code\windows.dm"
+#include "modular_iris\paradise_ports\refill_station\code\refill_station.dm"
 #include "modular_iris\yogs_ports\clothing\jobcapes.dm"
 #include "modular_iris\yogs_ports\lizard_things\code\spines.dm"
 #include "modular_iris\yogs_ports\lizard_things\code\tails.dm"
