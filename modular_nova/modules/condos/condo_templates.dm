@@ -16,17 +16,17 @@ Due to some fuckery with how these templates work; the bottom left turf of your 
 	landing_zone_x_offset = 2
 	landing_zone_y_offset = 5
 
-/datum/map_template/condo/apartment
+/* /datum/map_template/condo/apartment
 	name = "Condo - Apartment"
 	mappath = "modular_nova/modules/condos/_maps/apartment.dmm"
 	landing_zone_x_offset = 2
-	landing_zone_y_offset = 8
+	landing_zone_y_offset = 8 */
 
-/datum/map_template/condo/blueshift_dorms_four
+/* /datum/map_template/condo/blueshift_dorms_four
 	name = "Condo - \"Blueshift\" Style Dormitory"
 	mappath = "modular_nova/modules/condos/_maps/blueshift_dormsfour.dmm"
 	landing_zone_x_offset = 2
-	landing_zone_y_offset = 2
+	landing_zone_y_offset = 2 */
 
 /// Wowee! It's like I'm a real terrorist!
 /// This particular one was cooler with wallening window frames and short stairs.. alas. twas not to be
@@ -85,11 +85,11 @@ Due to some fuckery with how these templates work; the bottom left turf of your 
 	landing_zone_x_offset = 7
 	landing_zone_y_offset = 1
 
-/datum/map_template/condo/ouroboros_dorms_four
+/* /datum/map_template/condo/ouroboros_dorms_four
 	name = "Condo - \"Ouroboros\" Style Dormitory"
 	mappath = "modular_nova/modules/condos/_maps/ouroboros_dormssix.dmm"
 	landing_zone_x_offset = 2
-	landing_zone_y_offset = 4
+	landing_zone_y_offset = 4 */
 
 /// The joke was originally that it was just flatgrass. Now it's a little more.
 /datum/map_template/condo/planar_soil
@@ -98,17 +98,17 @@ Due to some fuckery with how these templates work; the bottom left turf of your 
 	landing_zone_x_offset = 7
 	landing_zone_y_offset = 1
 
-/datum/map_template/condo/serenity_cabin_four
+/* /datum/map_template/condo/serenity_cabin_four
 	name = "Condo - \"Serenity\" Style Cabin"
 	mappath = "modular_nova/modules/condos/_maps/serenity_cabinfour.dmm"
 	landing_zone_x_offset = 3
-	landing_zone_y_offset = 1
+	landing_zone_y_offset = 1 */
 
-/datum/map_template/condo/snowglobe_dorms_four
+/* /datum/map_template/condo/snowglobe_dorms_four
 	name = "Condo - \"Snowglobe\" Style Dormitory"
 	mappath = "modular_nova/modules/condos/_maps/snowglobe_dormsfour.dmm"
 	landing_zone_x_offset = 6
-	landing_zone_y_offset = 3
+	landing_zone_y_offset = 3 */
 
 /datum/map_template/condo/station_arrivals
 	name = "Condo - Arrivals Checkpoint"
