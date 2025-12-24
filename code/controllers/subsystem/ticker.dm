@@ -869,6 +869,7 @@ SUBSYSTEM_DEF(ticker)
 
 	if(!delay)
 		delay = CONFIG_GET(number/round_end_countdown) * 10
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/datum/controller/subsystem/ticker, show_server_restart_blurb), reason)
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)

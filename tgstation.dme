@@ -7188,6 +7188,7 @@
 #include "modular_iris\modules\research\code\xenobiology\crossbreeding\gentle.dm"
 #include "modular_iris\modules\research\code\xenobiology\crossbreeding\transformative.dm"
 #include "modular_iris\modules\research\code\xenobiology\crossbreeding\warping.dm"
+#include "modular_iris\modules\roundstart_blurb\location_blurbs.dm"
 #include "modular_iris\modules\sound\sounds.dm"
 #include "modular_iris\modules\station_traits\code\station_traits.dm"
 #include "modular_iris\modules\surgery_things\brain_surgery.dm"

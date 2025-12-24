@@ -113,6 +113,8 @@
 	var/mob/living/silicon/ai/our_AI = new /mob/living/silicon/ai(pick(landmark_loc), null, src)
 	. = our_AI
 
+	O.blurb_it()
+
 	if(preference_source)
 		apply_pref_name(/datum/preference/name/ai, preference_source)
 		our_AI.apply_pref_hologram_display(preference_source)
