@@ -41,9 +41,6 @@
 		if(!length(viewers))
 			return
 
-	else
-		viewers = list(viewers)
-
 	for(var/client/viewer as anything in viewers)
 		if(viewer)
 			viewer.screen += src
@@ -53,9 +50,6 @@
 
 	if(hold_for)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable/screen/text/blurb, hide_from), viewers), hold_for)
-	else
-		hide_from(viewers)
-
 
 /atom/movable/screen/text/blurb/proc/get_text_style()
 	PRIVATE_PROC(TRUE)
@@ -86,7 +80,6 @@
 
 	animate(src, alpha = 0, time = fade_animation_duration)
 
-
 /atom/movable/screen/text/blurb/proc/print_text()
 	PRIVATE_PROC(TRUE)
 
@@ -109,7 +102,7 @@
 
 	qdel(src)
 
-/datum/controller/subsystem/jobs/proc/show_location_blurb(client/show_blurb_to, datum/mind/antag_check)
+/datum/controller/subsystem/job/proc/show_location_blurb(client/show_blurb_to)
 	PRIVATE_PROC(TRUE)
 
 	if(!show_blurb_to?.mob)
@@ -117,28 +110,12 @@
 	SEND_SOUND(show_blurb_to, sound('modular_iris/sound/machines/typewriter.ogg'))
 
 	var/atom/movable/screen/text/blurb/location_blurb = new()
-	if(antag_check.antag_datums)
-		for(var/datum/antagonist/role in antag_check.antag_datums)
-			if(role.custom_blurb())
-				location_blurb.blurb_text = uppertext(role.custom_blurb())
-				location_blurb.text_color = role.blurb_text_color
-				location_blurb.text_outline_width = role.blurb_text_outline_width
-				location_blurb.background_r = role.blurb_r
-				location_blurb.background_g = role.blurb_g
-				location_blurb.background_b = role.blurb_b
-				location_blurb.background_a = role.blurb_a
-				location_blurb.font_family = role.blurb_font
-				break
-			location_blurb.blurb_text = uppertext("[GLOB.current_date_string], [station_time_timestamp()]\n[station_name()], [get_area_name(show_blurb_to.mob, TRUE)]")
-
-	else
-		location_blurb.blurb_text = uppertext("[GLOB.current_date_string], [station_time_timestamp()]\n[station_name()], [get_area_name(show_blurb_to.mob, TRUE)]")
+	location_blurb.blurb_text = uppertext("[time2text(world.timeofday, "DD/MM")]/[CURRENT_STATION_YEAR], [station_time_timestamp()]\n[station_name()], [get_area_name(show_blurb_to.mob, TRUE)]")
 	location_blurb.hold_for = 3 SECONDS
 	location_blurb.appear_animation_duration = 1 SECONDS
 	location_blurb.fade_animation_duration = 0.5 SECONDS
 
 	location_blurb.show_to(show_blurb_to)
-
 
 /datum/controller/subsystem/ticker/proc/show_server_restart_blurb(reason)
 	PRIVATE_PROC(TRUE)

@@ -761,6 +761,7 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/send_to_late_join(mob/M, buckle = TRUE)
 	var/atom/destination
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/controller/subsystem/job, show_location_blurb), M.client, M.mind), 1 SECONDS) //Moment for minds to boot up / people to load in
 	if(M.mind && !is_unassigned_job(M.mind.assigned_role) && length(GLOB.jobspawn_overrides[M.mind.assigned_role.title])) //We're doing something special today.
 		destination = pick(GLOB.jobspawn_overrides[M.mind.assigned_role.title])
 		destination.JoinPlayerHere(M, FALSE)
