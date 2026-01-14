@@ -1,8 +1,7 @@
 // LOADOUT ITEM DATUMS FOR THE NECK SLOT
 
-
 /datum/loadout_category/neck
-	tab_order = LOADOUT_NECK
+	tab_order = /datum/loadout_category/ears::tab_order + 1
 
 /datum/loadout_item/neck/pre_equip_item(datum/outfit/outfit, datum/outfit/outfit_important_for_life, mob/living/carbon/human/equipper, visuals_only = FALSE)
 	if(initial(outfit_important_for_life.neck))
@@ -37,6 +36,90 @@
 	name = "Tarkon Confidante Gauntlet"
 	item_path = /obj/item/clothing/neck/security_cape/tarkon
 	blacklisted_roles = list(ALL_JOBS_SEC, ALL_JOBS_COM, JOB_PRISONER)
+
+/*
+*	COLLARS
+*/
+
+/// THIN
+/datum/loadout_item/neck/thinchoker
+	name = "Choker"
+	item_path = /obj/item/clothing/neck/collar
+
+/datum/loadout_item/neck/collar
+	name = "Collar (Tagged)"
+	item_path = /obj/item/clothing/neck/collar/tagged
+
+/datum/loadout_item/neck/cbellcollar
+	name = "Collar (Cowbell)"
+	item_path = /obj/item/clothing/neck/collar/cowbell
+
+/datum/loadout_item/neck/bellcollar
+	name = "Collar (Bell)"
+	item_path = /obj/item/clothing/neck/collar/bell
+
+/datum/loadout_item/neck/hcollar
+	name = "Collar (Holo)"
+	item_path = /obj/item/clothing/neck/collar/holocollar
+
+/datum/loadout_item/neck/crosscollar
+	name = "Collar (Cross)"
+	item_path = /obj/item/clothing/neck/collar/cross
+
+/// THICK
+/datum/loadout_item/neck/choker
+	name = "Choker (Thick)"
+	item_path = /obj/item/clothing/neck/collar/thick
+
+/datum/loadout_item/neck/thick_bellcollar
+	name = "Collar (Bell, Thick)"
+	item_path = /obj/item/clothing/neck/collar/thick/bell
+
+/datum/loadout_item/neck/thick_cowbellcollar
+	name = "Collar (Cowbell, Thick)"
+	item_path = /obj/item/clothing/neck/collar/thick/cowbell
+
+/datum/loadout_item/neck/thick_crosscollar
+	name = "Collar (Cross, Thick)"
+	item_path = /obj/item/clothing/neck/collar/thick/cross
+
+/datum/loadout_item/neck/thick_holocollar
+	name = "Collar (Holocollar, Thick)"
+	item_path = /obj/item/clothing/neck/collar/thick/holocollar
+
+/datum/loadout_item/neck/thick_collar
+	name = "Collar (Thick)"
+	item_path = /obj/item/clothing/neck/collar/thick/tagged
+
+/// LEATHER
+/datum/loadout_item/neck/leater_collar
+	name = "Collar (Leather)"
+	item_path = /obj/item/clothing/neck/collar/leather
+
+/datum/loadout_item/neck/leather_bellcollar
+	name = "Collar (Bell, Leather)"
+	item_path = /obj/item/clothing/neck/collar/leather/bell
+
+/datum/loadout_item/neck/leather_cowbellcollar
+	name = "Collar (Cowbell, Leather)"
+	item_path = /obj/item/clothing/neck/collar/leather/cowbell
+
+/datum/loadout_item/neck/leather_crosscollar
+	name = "Collar (Cross, Leather)"
+	item_path = /obj/item/clothing/neck/collar/leather/cross
+
+/datum/loadout_item/neck/leather_holocollar
+	name = "Collar (Holocollar, Leather)"
+	item_path = /obj/item/clothing/neck/collar/leather/holocollar
+
+/datum/loadout_item/neck/leather_collar
+	name = "Collar (Tagged, Leather)"
+	item_path = /obj/item/clothing/neck/collar/leather/tagged
+
+/// SPIKE
+/datum/loadout_item/neck/spikecollar
+	name = "Collar (Spiked)"
+	item_path = /obj/item/clothing/neck/collar/spike
 
 /*
 *	SCARVES
@@ -204,16 +287,6 @@
 	item_path = /obj/item/clothing/neck/cloak/colourable/boat
 	group = "Cloaks and Shrouds"
 
-/datum/loadout_item/neck/gags_mantle
-	name = "Mantle (Colorable)"
-	item_path = /obj/item/clothing/neck/mantle/recolorable
-	group = "Cloaks and Shrouds"
-
-/datum/loadout_item/neck/gags_boat //This isn't actually a boatcloak (its way too short)
-	name = "Mantle - Long (Colorable)"
-	item_path = /obj/item/clothing/neck/cloak/colourable/boat
-	group = "Cloaks and Shrouds"
-
 /datum/loadout_item/neck/tesharian_mantle
 	name = "Mantle - Tesharian"
 	item_path = /obj/item/clothing/neck/tesharian_mantle
@@ -253,72 +326,7 @@
 	name = "Seer Cloak (Colorable)"
 	item_path = /obj/item/clothing/neck/greyscaled/seecloak
 	group = "Cloaks and Shrouds"
-
-/datum/loadout_item/neck/matroncloak
-	name = "Matron Cloak (Colorable)"
-	item_path = /obj/item/clothing/neck/greyscaled/matroncloak
-	group = "Cloaks and Shrouds"
-
-/datum/loadout_item/neck/xylixcloak
-	name = "Xylix Cloak (Colorable)"
-	item_path = /obj/item/clothing/neck/greyscaled/xylixcloak
-	group = "Cloaks and Shrouds"
-
-/*
-*	JOB-LOCKED
-*/
-
-//COM
-/datum/loadout_item/neck/mantle_cap
-	name = "Captain's Mantle"
-	item_path = /obj/item/clothing/neck/mantle/capmantle
-	restricted_roles = list(JOB_CAPTAIN)
-	group = "Job-Locked"
-
-/datum/loadout_item/neck/mantle_bs
-	//Weird name, but the B in Blueshield alphabetically sorts and puts the Job-Locked group high in the loadout.
-	//So don't add any B items to this group. Please.
-	name = "Command Bodyguard's Mantle"
-	item_path = /obj/item/clothing/neck/mantle/bsmantle
-	restricted_roles = list(JOB_BLUESHIELD)
-	group = "Job-Locked"
-
-//SERV
-/datum/loadout_item/neck/ponchocowboy
-	name = "Poncho - Cowboy"
-	item_path = /obj/item/clothing/neck/cowboylea
-	group = "Cloaks and Shrouds"
-
-/datum/loadout_item/neck/ranger_poncho_greyscale
-	name = "Poncho - Ranger (Colorable)"
-	item_path = /obj/item/clothing/neck/ranger_poncho
-	group = "Cloaks and Shrouds"
-
-/datum/loadout_item/neck/security_cape
-	name = "Security Cape"
-	item_path = /obj/item/clothing/neck/security_cape
-	group = "Cloaks and Shrouds"
-
-/datum/loadout_item/neck/gags_shroud
-	name = "Shroud (Colorable)"
-	item_path = /obj/item/clothing/neck/cloak/colourable/shroud
-	group = "Cloaks and Shrouds"
-
-/datum/loadout_item/neck/gags_veil
-	name = "Veil (Colorable)"
-	item_path = /obj/item/clothing/neck/cloak/colourable/veil
-	group = "Cloaks and Shrouds"
-
-/datum/loadout_item/neck/shortcloak
-	name = "Short Cloak (Colorable)"
-	item_path = /obj/item/clothing/neck/greyscaled
-	group = "Cloaks and Shrouds"
-
-/datum/loadout_item/neck/seecloak
-	name = "Seer Cloak (Colorable)"
-	item_path = /obj/item/clothing/neck/greyscaled/seecloak
-	group = "Cloaks and Shrouds"
-	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_ALLOW_RESKIN
+	reskin_datum = /datum/atom_skin/seecloak
 
 /datum/loadout_item/neck/matroncloak
 	name = "Matron Cloak (Colorable)"
@@ -413,14 +421,14 @@
 *	DONATOR
 */
 
-/datum/loadout_item/donator/neck/donator
-	abstract_type = /datum/loadout_item/donator/neck/donator
+/datum/loadout_item/neck/donator
+	abstract_type = /datum/loadout_item/neck/donator
 	donator_only = TRUE
 
-/datum/loadout_item/donator/neck/donator/mantle
-	abstract_type = /datum/loadout_item/donator/neck/donator/mantle
+/datum/loadout_item/neck/donator/mantle
+	abstract_type = /datum/loadout_item/neck/donator/mantle
 
-/datum/loadout_item/donator/neck/donator/mantle/regal
+/datum/loadout_item/neck/donator/mantle/regal
 	name = "Regal Mantle"
 	item_path = /obj/item/clothing/neck/mantle/regal
 	group = "Cloaks and Shrouds"

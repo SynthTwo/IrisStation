@@ -533,7 +533,7 @@ trait_name = "Station"
 map_files = ["nebulastation_bridge_stairs_upper.dmm"]
 directory = "_maps/nova/automapper/templates/nebulastation/"
 required_map = "NebulaStation.dmm"
-coordinates = [192, 136, 2]
+coordinates = [193, 136, 2]
 trait_name = "Station"
 
 # Iris - Nebulastation Exploration Office

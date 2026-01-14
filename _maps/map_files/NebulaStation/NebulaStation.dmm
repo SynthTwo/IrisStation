@@ -14860,11 +14860,11 @@
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted{
 	dir = 4
 	},
-/obj/machinery/digital_clock/directional/east,
 /obj/structure/bed/medical{
 	dir = 4
 	},
 /obj/item/bedsheet/medical,
+/obj/machinery/vitals_reader/directional/east,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "ckV" = (
@@ -19839,7 +19839,7 @@
 	fax_name = "Chief Engineer's Office";
 	name = "Chief Engineer's Fax Machine"
 	},
-/obj/item/computer_disk/engineering,
+/obj/item/disk/computer/engineering,
 /obj/structure/table/reinforced/rglass,
 /turf/open/floor/carpet/orange,
 /area/station/command/heads_quarters/ce)
@@ -24181,6 +24181,9 @@
 /obj/effect/turf_decal/siding/dark/end{
 	dir = 8
 	},
+/obj/machinery/vitals_reader/directional/west{
+	id_tag = "uppercryo"
+	},
 /turf/open/floor/iron/dark/small,
 /area/station/medical/cryo)
 "dDn" = (
@@ -27420,7 +27423,7 @@
 "eci" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/maintenance/glass{
-	name = "Auxiliry Dock Maintainence"
+	name = "Auxiliary Dock Maintenance"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -30104,6 +30107,16 @@
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/pharmacy)
+"ewR" = (
+/obj/machinery/status_display/evac/directional/north,
+/obj/machinery/light/directional/north,
+/obj/structure/table/reinforced/rglass,
+/obj/item/storage/medkit/emergency{
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/iron/white,
+/area/station/hallway/primary/fore)
 "ewV" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -32138,14 +32151,14 @@
 	},
 /obj/effect/mapping_helpers/requests_console/assistance,
 /obj/effect/mapping_helpers/requests_console/information,
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_x = -5;
 	pixel_y = 8
 	},
-/obj/item/computer_disk{
+/obj/item/disk/computer{
 	pixel_y = 1
 	},
-/obj/item/computer_disk/ordnance{
+/obj/item/disk/computer/ordnance{
 	pixel_x = 4;
 	pixel_y = 6
 	},
@@ -35293,6 +35306,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment{
 	dir = 6
+	},
+/obj/machinery/vitals_reader/directional/west{
+	id_tag = "lowercryo"
 	},
 /turf/open/floor/iron/dark/small,
 /area/station/medical/cryo)
@@ -50314,6 +50330,7 @@
 	dir = 1
 	},
 /obj/machinery/digital_clock/directional/south,
+/obj/machinery/vitals_reader/directional/east,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/surgery/theatre)
 "hud" = (
@@ -60917,7 +60934,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance/glass{
-	name = "Auxiliry Dock Storage Room"
+	name = "Auxiliary Dock Storage Room"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/service/maintenance,
 /obj/effect/mapping_helpers/airlock/unres/delayed{
@@ -65035,7 +65052,8 @@
 /area/station/commons/dorms)
 "jDO" = (
 /obj/machinery/door/airlock/medical{
-	name = "Psychology"
+	name = "Psychology";
+	id_tag = "psychology"
 	},
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/effect/mapping_helpers/airlock/access/all/medical/psychology,
@@ -72070,6 +72088,7 @@
 	},
 /obj/structure/aquarium/prefilled,
 /obj/structure/sign/clock/directional/west,
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/parquet,
 /area/station/medical/psychology)
 "kDb" = (
@@ -74329,14 +74348,13 @@
 /turf/open/floor/iron/dark/small,
 /area/station/engineering/supermatter/room/upper)
 "kUl" = (
-/obj/machinery/status_display/evac/directional/north,
-/obj/machinery/light/directional/north,
-/obj/structure/table/reinforced/rglass,
-/obj/item/storage/medkit/emergency{
-	pixel_y = 4
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
 	},
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/iron/dark/textured_large,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood/parquet,
 /area/station/hallway/primary/fore)
 "kUm" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark/corner{
@@ -75523,6 +75541,7 @@
 /obj/machinery/computer/operating{
 	dir = 1
 	},
+/obj/machinery/vitals_reader/directional/west,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/surgery/theatre)
 "lfV" = (
@@ -75774,7 +75793,7 @@
 "lib" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/maintenance/glass{
-	name = "Auxiliry Dock Maintainence"
+	name = "Auxiliary Dock Maintenance"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -78167,16 +78186,17 @@
 "lAm" = (
 /obj/machinery/defibrillator_mount/directional/south,
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted,
-/obj/machinery/digital_clock/directional/east,
 /obj/structure/bed/medical{
 	dir = 4
 	},
 /obj/item/bedsheet/medical,
+/obj/machinery/vitals_reader/directional/east,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "lAq" = (
 /obj/machinery/cryo_cell{
-	dir = 4
+	dir = 4;
+	id_tag = "lowercryo"
 	},
 /obj/effect/turf_decal/bot_white{
 	color = "#52B4E9"
@@ -95286,6 +95306,17 @@
 /obj/machinery/power/apc/auto_name/directional/north,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
+"ogk" = (
+/obj/machinery/cryo_cell{
+	dir = 4;
+	id_tag = "uppercryo"
+	},
+/obj/effect/turf_decal/bot_white{
+	color = "#52B4E9"
+	},
+/obj/structure/sign/warning/cold_temp/directional/west,
+/turf/open/floor/iron/dark/textured,
+/area/station/medical/cryo)
 "ogl" = (
 /obj/structure/fluff/paper,
 /obj/structure/sign/poster/random/directional/south,
@@ -101364,7 +101395,7 @@
 	pixel_y = 6;
 	pixel_x = -5
 	},
-/obj/item/computer_disk/medical,
+/obj/item/disk/computer/medical,
 /obj/machinery/requests_console/directional/south{
 	department = "Chief Medical Officer's Desk";
 	name = "Chief Medical Officer's Requests Console"
@@ -105343,7 +105374,7 @@
 "pzT" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/maintenance/glass{
-	name = "Auxiliry Dock Maintainence"
+	name = "Auxiliary Dock Maintenance"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -107158,12 +107189,12 @@
 	},
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/button/door/directional/north{
-	id = "padded";
-	name = "Padded Cell Bolts Control";
+	name = "Psychologist Office Bolts Control";
 	normaldoorcontrol = 1;
 	specialfunctions = 4;
 	pixel_x = -6;
-	pixel_y = 26
+	pixel_y = 26;
+	id = "psychology"
 	},
 /obj/machinery/light/directional/north,
 /obj/machinery/light_switch/directional/north{
@@ -107285,7 +107316,10 @@
 /area/station/maintenance/port/central)
 "pOV" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 6
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
 	},
 /turf/open/floor/wood/parquet,
 /area/station/medical/psychology)
@@ -115389,7 +115423,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance/glass{
-	name = "Auxiliry Dock Maintainence"
+	name = "Auxiliary Dock Maintenance"
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -118274,6 +118308,9 @@
 	},
 /obj/item/bedsheet/medical{
 	dir = 4
+	},
+/obj/machinery/digital_clock/directional/north{
+	pixel_y = 36
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
@@ -128380,7 +128417,6 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/obj/structure/sign/departments/medbay/alt/directional/north,
 /obj/effect/turf_decal/siding/thinplating_new/light/corner{
 	dir = 8
 	},
@@ -138231,6 +138267,20 @@
 /obj/effect/turf_decal/siding/thinplating_new/light,
 /turf/open/floor/iron/white/small,
 /area/station/commons/fitness/recreation/pool)
+"uwl" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/door/airlock/medical{
+	name = "Psychology";
+	id_tag = "psychology"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/medical/psychology,
+/turf/open/floor/wood/parquet,
+/area/station/medical/psychology)
 "uwo" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
 	dir = 1
@@ -143162,6 +143212,7 @@
 	dir = 1
 	},
 /obj/structure/marker_beacon/lime,
+/obj/structure/sign/departments/medbay/alt/directional/north,
 /turf/open/floor/iron/white,
 /area/station/hallway/primary/fore)
 "vhO" = (
@@ -144165,7 +144216,7 @@
 	pixel_y = 3;
 	pixel_x = -2
 	},
-/obj/item/computer_disk/ordnance{
+/obj/item/disk/computer/ordnance{
 	pixel_y = 2;
 	pixel_x = 4
 	},
@@ -254385,7 +254436,7 @@ aqQ
 gyf
 nHB
 dCZ
-lAq
+ogk
 tMT
 lAq
 fjZ
@@ -260798,7 +260849,7 @@ nXX
 ias
 nDa
 pOV
-bxI
+uwl
 kUl
 qyc
 myV
@@ -261313,7 +261364,7 @@ ivp
 aZX
 smy
 bxI
-hkc
+ewR
 sYJ
 mpA
 xwK
